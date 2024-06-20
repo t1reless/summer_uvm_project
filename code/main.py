@@ -48,10 +48,21 @@ def finding_seed_words_in_tweets():
                         word_matches_and_frequency.update({word:word_matches_and_frequency[word]+1})
                     else:
                         word_matches_and_frequency[word] = 1
+
+def dictionary_sorter(dict):
+    sorted_dict = {}
+    
+    try:
+        for key in sorted(dict, key=dict.get()):
+            sorted_dict[key] = dict[key]
+        return sorted_dict
+    except:
+        ValueError
 seed_lexicon_reader("seed_words.txt")
 tweet_csv_reader("negative.csv")
 finding_seed_words_in_tweets()
-print(word_matches_and_frequency)
+
+print(dictionary_sorter(word_matches_and_frequency))
 # create a function to load a given csv into memory 
 # then iterate over the values 
 # 1. chunk the tweet into a list splitting on spaces
