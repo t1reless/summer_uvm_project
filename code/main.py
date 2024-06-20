@@ -1,5 +1,5 @@
 import csv
-
+import pandas as pd 
 """
 tweets = []
 
@@ -15,8 +15,23 @@ else:
         print(tweets)
         print(len(tweets))
 """
+
+seed_words = []
+tweets = []
 # create a function to load in a list of seed words into memory
-# as a list
+def seed_lexicon_reader(txt_file_name):
+    with open(txt_file_name) as file:
+        lines = file.readlines()
+        for word in lines:
+            seed_words.append(word.strip())
+seed_lexicon_reader("seed_words.txt")
+print(seed_words)
+
+def seed_lexicon_csv_reader(file_name):
+    seed_lexicon = pd.read_csv(file_name).columns
+    for word in seed_lexicon:
+        seed_words.append(word)
+
 
 # create a function to load a given csv into memory 
 # 
