@@ -49,15 +49,9 @@ def finding_seed_words_in_tweets():
                     else:
                         word_matches_and_frequency[word] = 1
 
-def dictionary_sorter(dict):
-    sorted_dict = {}
-    
-    try:
-        for key in sorted(dict, key=dict.get()):
-            sorted_dict[key] = dict[key]
-        return sorted_dict
-    except:
-        ValueError
+def dictionary_sorter(input):
+    sorted_dict = dict(sorted(input.items(), key = lambda item: item[1]))
+    return sorted_dict
 seed_lexicon_reader("seed_words.txt")
 tweet_csv_reader("negative.csv")
 finding_seed_words_in_tweets()
