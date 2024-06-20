@@ -3,7 +3,7 @@ import pandas as pd
 
 seed_words_list = []
 tweets = []
-word_matches_and_frequency = {"unhappy":1}
+word_matches_and_frequency = {}
 
 def words_surrounding_key_word_in_tweet(word,tweet_as_list):
     position = tweet_as_list.index(word)
