@@ -20,6 +20,17 @@ seed_words_list = []
 tweets = []
 word_matches_and_frequency = {}
 
+def words_surrounding_key_word_in_tweet(word,tweet_as_list):
+    position = tweet_as_list.index(word)
+    next_words = []
+    try:
+        next_words.append(tweet_as_list[position+1])
+        next_words.append(tweet_as_list[position+2])
+    except:
+        IndexError
+    else: 
+        return next_words
+
 # create a function to load in a list of seed words into memory
 def seed_lexicon_reader(txt_file_name):
     with open(txt_file_name) as file:
@@ -40,11 +51,16 @@ def finding_seed_words_in_tweets():
         if len(result) == 0:
             continue
         else:
-            print(f"{" ".join(str(x)for x in tweet_list)} contained: {result}")
+            close_words = words_surrounding_key_word_in_tweet(result[0],tweet_list)
+            if close_words == None:
+                continue
+            else:
+                print(close_words)
 
 seed_lexicon_reader("seed_words.txt")
 tweet_csv_reader("negative.csv")
 finding_seed_words_in_tweets()
+
 # create a function to load a given csv into memory 
 # then iterate over the values 
 # 1. chunk the tweet into a list splitting on spaces
