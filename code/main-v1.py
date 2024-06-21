@@ -74,4 +74,5 @@ plt.xlabel("Words")
 plt.ylabel("Frequency")
 plt.title(f"Words occuring more than {lower_bound} times in {tweet_candidate_file}")
 
+print(lower_bound_filter(lower_bound))
 plt.show()
