@@ -4,6 +4,7 @@ import csv
 from numpy import loadtxt
 from collections import Counter
 import sys
+import matplotlib.pyplot as plt
 
 #arguments
 seed_file = sys.argv[1]
@@ -51,7 +52,7 @@ def corpus_maximus():
 def lower_bound_filter(lower_bound):
     working_dict = Counter(grand_list)
     new_dict = {key:val for key, val in working_dict.items() if val >= lower_bound}
-    print(Counter(new_dict))
+    return Counter(new_dict)
 
 seed_words = seed_list_reader(seed_file)
 tweets = tweet_csv_parser(tweet_candidate_file)
@@ -62,4 +63,15 @@ corpus_maximus()
 
 # prints a dictionary of all words in all tweets which contain the seed words 
 # and their counts
-lower_bound_filter(lower_bound)
+data = lower_bound_filter(lower_bound)
+
+words = list(data.keys())
+frequ = list(data.values())
+
+plt.bar(words,frequ)
+
+plt.xlabel("Words")
+plt.ylabel("Frequency")
+plt.title(f"Words occuring more than {lower_bound} times in {tweet_candidate_file}")
+
+plt.show()
